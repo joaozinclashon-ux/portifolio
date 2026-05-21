@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PWEB1 — Cap. 05 — AT03 — Matrícula Acadêmica</title>
+
+  <style>
+  /* 1. CONFIGURAÇÃO DA PÁGINA (BACKGROUND E FONTE) */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  header a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  header a:hover {
+    text-decoration: underline;
+  }
+
+  /* 2. O CONTAINER CENTRALIZADO DO FORMULÁRIO */
+  main {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* 3. CAIXAS DE AGRUPAMENTO (FIELDSET E LEGEND) */
+  fieldset {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #fafafa;
+  }
+
+  legend {
+    font-weight: bold;
+    color: #007bff;
+    padding: 0 10px;
+    font-size: 1.1rem;
+  }
+
+  /* Espaçamento vertical entre os campos */
+  div {
+    margin-bottom: 15px;
+  }
+
+  /* 4. RÓTULOS (LABELS) */
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  /* Exceção importante: Labels de Radio e Checkbox não devem quebrar linha */
+  input[type="radio"] + label,
+  input[type="checkbox"] + label {
+    display: inline;
+    font-weight: normal;
+    margin-left: 5px;
+  }
+
+  /* 5. CAMPOS DE DIGITAÇÃO E SELEÇÃO */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="url"],
+  input[type="date"],
+  input[type="datetime-local"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Crucial para o padding não estourar os 100% */
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  /* Efeito luminoso quando o usuário clica no campo */
+  input:focus, select:focus, textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    outline: none;
+  }
+
+  /* Ajustes específicos para componentes avançados (AT04) */
+  input[type="color"] {
+    width: 60px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type="range"] {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  /* 6. BOTÕES (ENVIAR E LIMPAR) */
+  button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-right: 10px;
+  }
+
+  button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #218838;
+  }
+
+  button[type="reset"] {
+    background-color: #6c757d;
+    color: white;
+  }
+
+  button[type="reset"]:hover {
+    background-color: #5a6268;
+  }
+
+  button:active {
+    transform: scale(0.98); /* Efeito de clique físico afundando levemente */
+  }
+
+  /* Textos auxiliares pequenos (Acessibilidade) */
+  small {
+    color: #666;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <h1>AT03 — Formulário de Matrícula Acadêmica</h1>
+    <p><a href="../index.html">← Voltar para a página principal</a></p>
+  </header>
+
+  <main>
+    <p><em>* Campos obrigatórios</em></p>
+
+    <form action="https://httpbin.org/post" method="POST">
+      
+      <fieldset>
+        <legend>Dados Pessoais</legend>
+
+        <div>
+          <label for="txt-nome">Nome completo: *</label>
+          <input type="text" id="txt-nome" name="nome" required minlength="5" maxlength="100" />
+        </div>
+
+        <div>
+          <label for="txt-cpf">CPF: *</label>
+          <input 
+            type="text" 
+            id="txt-cpf" 
+            name="cpf" 
+            required 
+            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" 
+            placeholder="000.000.000-00" 
+            title="CPF no formato 000.000.000-00" 
+          />
+        </div>
+
+        <div>
+          <label for="txt-telefone">Telefone:</label>
+          <input 
+            type="tel" 
+            id="txt-telefone" 
+            name="telefone" 
+            pattern="\(\d{2}\)\s\d{4,5}-\d{4}" 
+            placeholder="(82) 99999-9999" 
+          />
+        </div>
+
+        <div>
+          <label for="txt-email">E-mail: *</label>
+          <input type="email" id="txt-email" name="email" required />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Dados Acadêmicos</legend>
+
+        <div>
+          <label for="sel-curso">Curso: *</label>
+          <select id="sel-curso" name="curso" required>
+            <option value="">-- Selecione um curso --</option>
+            <optgroup label="Computação">
+              <option value="sistemas_informacao">Sistemas de Informação</option>
+              <option value="ciencia_computacao">Ciência da Computação</option>
+              <option value="engenharia_computacao">Engenharia da Computação</option>
+            </optgroup>
+            <optgroup label="Gestão">
+              <option value="administracao">Administração</option>
+              <option value="ciencias_contabeis">Ciências Contábeis</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <fieldset>
+          <legend>Período</legend>
+          <div>
+            <input type="radio" id="per-manha" name="periodo" value="Manhã" />
+            <label for="per-manha">Manhã</label>
+          </div>
+          <div>
+            <input type="radio" id="per-tarde" name="periodo" value="Tarde" />
+            <label for="per-tarde">Tarde</label>
+          </div>
+          <div>
+            <input type="radio" id="per-noite" name="periodo" value="Noite" />
+            <label for="per-noite">Noite</label>
+          </div>
+        </fieldset>
+
+        <div>
+          <label for="num-ingresso">Ano de ingresso pretendido: *</label>
+          <input type="number" id="num-ingresso" name="ano_ingresso" min="2025" max="2030" required />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Áreas de Interesse</legend>
+        <p>Selecione as áreas que você mais se identifica:</p>
+        
+        <div>
+          <input type="checkbox" id="chk-devweb" name="interesses[]" value="Desenvolvimento Web" />
+          <label for="chk-devweb">Desenvolvimento Web</label>
+        </div>
+        <div>
+          <input type="checkbox" id="chk-bd" name="interesses[]" value="Banco de Dados" />
+          <label for="chk-bd">Banco de Dados</label>
+        </div>
+        <div>
+          <input type="checkbox" id="chk-ia" name="interesses[]" value="Inteligência Artificial" />
+          <label for="chk-ia">Inteligência Artificial</label>
+        </div>
+        <div>
+          <input type="checkbox" id="chk-seg" name="interesses[]" value="Segurança da Informação" />
+          <label for="chk-seg">Segurança da Informação</label>
+        </div>
+        <div>
+          <input type="checkbox" id="chk-infra" name="interesses[]" value="Infraestrutura" />
+          <label for="chk-infra">Infraestrutura</label>
+        </div>
+      </fieldset>
+
+      <div>
+        <button type="submit">Solicitar matrícula</button>
+        <button type="reset">Limpar formulário</button>
+      </div>
+
+    </form>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PWEB1 — Cap. 05 — AT02 — Cadastro de Usuário</title>
+</head>
+<body>
+
+  <header>
+    <h1>AT02 — Cadastro de Usuário</h1>
+    <p><a href="../index.html">← Voltar para a página principal</a></p>
+  </header>
+
+  <main>
+    <form action="https://httpbin.org/post" method="POST">
+      
+      <div>
+        <label for="txt-nome">Nome completo:</label>
+        <input type="text" id="txt-nome" name="nome" required minlength="3" />
+      </div>
+
+      <div>
+        <label for="txt-email">E-mail:</label>
+        <input type="email" id="txt-email" name="email" required />
+      </div>
+
+      <div>
+        <label for="txt-senha">Senha:</label>
+        <input type="password" id="txt-senha" name="senha" required minlength="8" />
+      </div>
+
+      <div>
+        <label for="txt-nascimento">Data de nascimento:</label>
+        <input type="date" id="txt-nascimento" name="nascimento" required />
+      </div>
+
+      <fieldset>
+        <legend>Gênero</legend>
+        
+        <div>
+          <input type="radio" id="gen-masc" name="genero" value="masculino" />
+          <label mapping for="gen-masc">Masculino</label>
+        </div>
+
+        <div>
+          <input type="radio" id="gen-fem" name="genero" value="feminino" />
+          <label for="gen-fem">Feminino</label>
+        </div>
+
+        <div>
+          <input type="radio" id="gen-outro" name="genero" value="outro" />
+          <label for="gen-outro">Outro</label>
+        </div>
+
+        <div>
+          <input type="radio" id="gen-pni" name="genero" value="prefiro_nao_informar" />
+          <label for="gen-pni">Prefiro não informar</label>
+        </div>
+      </fieldset>
+
+      <div>
+        <input type="checkbox" id="chk-aceite" name="aceite" value="sim" required />
+        <label for="chk-aceite">Aceito os termos de uso</label>
+      </div>
+
+      <div>
+        <button type="submit">Criar conta</button>
+        <button type="reset">Limpar campos</button>
+      </div>
+
+    </form>
+  </main>
+
+</body>
+</html>

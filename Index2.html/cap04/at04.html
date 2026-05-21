@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Recursos Multimídia — Cap. 4 / Ativ. 4</title>
+</head>
+<body>
+  <header>
+    <p><a href="../index.html">← Voltar à página principal</a></p>
+    <h1>Recursos Multimídia Acadêmicos</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Vídeo Aula: Estrutura HTML5</h2>
+      <figure>
+        <video controls width="800" height="450" poster="poster-aula.jpg" preload="metadata">
+          <source src="videos/aula-html.mp4" type="video/mp4">
+          <source src="videos/aula-html.webm" type="video/webm">
+          <track kind="subtitles" src="legendas/aula-html.vtt" srclang="pt" label="Português" default>
+          <p>Seu navegador não suporta vídeos HTML5. 
+             <a href="videos/aula-html.mp4">Clique aqui para baixar o vídeo.</a>
+          </p>
+        </video>
+        <figcaption>Videoaula sobre tags semânticas - Fonte: Acervo IFAL (Exemplo)</figcaption>
+      </figure>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Podcast: O Futuro do Desenvolvimento</h2>
+      <figure>
+        <audio controls preload="metadata">
+          <source src="audio/podcast-01.mp3" type="audio/mpeg">
+          <source src="audio/podcast-01.ogg" type="audio/ogg">
+          <p>Seu navegador não suporta áudio HTML5. 
+             <a href="audio/podcast-01.mp3">Baixe o áudio aqui.</a>
+          </p>
+        </audio>
+        <figcaption>Episódio 01: Mercado de Trabalho para Devs | <a href="transcricao.html">Acesse a transcrição</a></figcaption>
+      </figure>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Dica Externa: Como o Google funciona</h2>
+      <figure>
+        <iframe width="800" height="450" 
+                src="https://www.youtube-nocookie.com/embed/09XvVatV89E" 
+                title="Vídeo explicando o que é a Internet" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen 
+                loading="lazy">
+        </iframe>
+        <figcaption>O que é Internet e como funciona? - Canal: Curso em Vídeo (YouTube)</figcaption>
+      </figure>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Banner de Destaque</h2>
+      <figure>
+        <picture>
+          <source media="(min-width: 768px)" srcset="img/banner-wide.jpg">
+          <img src="img/banner-mobile.jpg" alt="Estudante de sistemas programando no laboratório" width="400" height="300">
+        </picture>
+        <figcaption>Imagem ilustrativa do curso de Desenvolvimento de Sistemas.</figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Estudante:</strong> Ruan Nickollas</p>
+    <p><strong>Turma:</strong> 911C | <strong>Data:</strong> 21/05/2026</p>
+  </footer>
+</body>
+</html>

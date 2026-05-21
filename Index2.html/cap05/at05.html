@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PWEB1 — Cap. 05 — AT05 — Pesquisa Acadêmica</title>
+  <style>
+    /* Pequeno ajuste visual para o texto de erro ficar vermelho e destacado */
+    #erro-email {
+      color: #ff0000;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+  /* 1. Configuração Geral da Página */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  header a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  header a:hover {
+    text-decoration: underline;
+  }
+
+  /* 2. O Container do Formulário */
+  main {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* 3. Estilização dos Blocos e Agrupamentos */
+  fieldset {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #fafafa;
+  }
+
+  legend {
+    font-weight: bold;
+    color: #007bff;
+    padding: 0 10px;
+  }
+
+  /* Espaçamento entre cada campo */
+  div {
+    margin-bottom: 15px;
+  }
+
+  /* 4. Estilização dos Textos e Labels */
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  /* Para rádio e checkbox, o label não deve ocupar a linha toda */
+  input[type="radio"] + label,
+  input[type="checkbox"] + label {
+    display: inline;
+    font-weight: normal;
+    margin-left: 5px;
+  }
+
+  /* 5. Estilização dos Campos de Entrada (Inputs, Select e Textarea) */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="url"],
+  input[type="date"],
+  input[type="datetime-local"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que o padding não passe do limite do container */
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  /* Efeito de foco quando o usuário clica no campo */
+  input:focus, select:focus, textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    outline: none;
+  }
+
+  /* Campos Especiais menores */
+  input[type="color"] {
+    width: 60px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  /* 6. Botões Impressionantes */
+  button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-right: 10px;
+  }
+
+  button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #218838;
+  }
+
+  button[type="reset"] {
+    background-color: #6c757d;
+    color: white;
+  }
+
+  button[type="reset"]:hover {
+    background-color: #5a6268;
+  }
+
+  button:active {
+    transform: scale(0.98);
+  }
+
+  /* 7. Estilo para Mensagens de Erro (AT05) */
+  #erro-email {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-weight: bold;
+  }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>AT05 — Formulário de Pesquisa Acadêmica</h1>
+    <p><a href="../index.html">← Voltar para a página principal</a></p>
+  </header>
+
+  <main>
+    <p><em>* Campos obrigatórios</em></p>
+
+    <form action="https://httpbin.org/post" method="POST" novalidate>
+      
+      <fieldset>
+        <legend>Perfil do Estudante</legend>
+
+        <div>
+          <label for="txt-nome">Nome completo: <span aria-hidden="true">*</span></label>
+          <input type="text" id="txt-nome" name="nome" aria-required="true" autocomplete="name" />
+        </div>
+
+        <div>
+          <label for="txt-matricula">Matrícula (7 dígitos): <span aria-hidden="true">*</span></label>
+          <input 
+            type="text" 
+            id="txt-matricula" 
+            name="matricula" 
+            pattern="\d{7}" 
+            aria-required="true" 
+            aria-describedby="instrucao-matricula" 
+          />
+          <br />
+          <small id="instrucao-matricula">A matrícula deve conter exatamente 7 números.</small>
+        </div>
+
+        <div>
+          <label for="email">E-mail institucional: <span aria-hidden="true">*</span></label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            aria-required="true"
+            aria-invalid="false"
+            aria-describedby="erro-email"
+            autocomplete="email"
+            onblur="validarEmail(this)"
+          />
+          <p id="erro-email" role="alert"></p>
+        </div>
+
+        <div>
+          <label for="sel-periodo">Período atual: <span aria-hidden="true">*</span></label>
+          <select id="sel-periodo" name="periodo" aria-required="true">
+            <option value="">-- Selecione o período --</option>
+            <option value="1">1º Período</option>
+            <option value="2">2º Período</option>
+            <option value="3">3º Período</option>
+            <option value="4">4º Período</option>
+            <option value="5">5º Período</option>
+            <option value="6">6º Período</option>
+            <option value="7">7º Período</option>
+            <option value="8">8º Período</option>
+          </select>
+        </div>
+
+        <fieldset>
+          <legend>Turno <span aria-hidden="true">*</span></legend>
+          <div>
+            <input type="radio" id="trn-manha" name="turno" value="Manhã" />
+            <label for="trn-manha">Manhã</label>
+          </div>
+          <div>
+            <input type="radio" id="trn-tarde" name="turno" value="Tarde" />
+            <label for="trn-tarde">Tarde</label>
+          </div>
+          <div>
+            <input type="radio" id="trn-noite" name="turno" value="Noite" />
+            <label for="trn-noite">Noite</label>
+          </div>
+        </fieldset>
+      </fieldset>
+
+      <fieldset>
+        <legend>Perfil Tecnológico</legend>
+
+        <fieldset>
+          <legend>Tecnologias que conhece</legend>
+          <div>
+            <input type="checkbox" id="tec-html" name="tecnologias[]" value="HTML" />
+            <label for="tec-html">HTML</label>
+          </div>
+          <div>
+            <input type="checkbox" id="tec-css" name="tecnologias[]" value="CSS" />
+            <label for="tec-css">CSS</label>
+          </div>
+          <div>
+            <input type="checkbox" id="tec-js" name="tecnologias[]" value="JavaScript" />
+            <label for="tec-js">JavaScript</label>
+          </div>
+          <div>
+            <input type="checkbox" id="tec-react" name="tecnologias[]" value="React" />
+            <label for="tec-react">React</label>
+          </div>
+          <div>
+            <input type="checkbox" id="tec-node" name="tecnologias[]" value="Node.js" />
+            <label for="tec-node">Node.js</label>
+          </div>
+          <div>
+            <input type="checkbox" id="tec-sql" name="tecnologias[]" value="SQL" />
+            <label for="tec-sql">SQL</label>
+          </div>
+          <div>
+            <input type="checkbox" id="tec-git" name="tecnologias[]" value="Git" />
+            <label for="tec-git">Git</label>
+          </div>
+          <div>
+            <input type="checkbox" id="tec-docker" name="tecnologias[]" value="Docker" />
+            <label for="tec-docker">Docker</label>
+          </div>
+        </fieldset>
+
+        <div>
+          <br />
+          <label for="sel-linguagem">Linguagem favorita:</label>
+          <select id="sel-linguagem" name="linguagem_favorita">
+            <option value="">-- Selecione uma linguagem --</option>
+            <optgroup label="Multiparadigma/Web">
+              <option value="javascript">JavaScript</option>
+              <option value="python">Python</option>
+              <option value="typescript">TypeScript</option>
+            </optgroup>
+            <optgroup label="Orientada a Objetos / Tipada">
+              <option value="java">Java</option>
+              <option value="csharp">C#</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div>
+          <br />
+          <label for="num-experiencia">Anos de experiência com programação:</label>
+          <input type="number" id="num-experiencia" name="anos_experiencia" min="0" max="30" />
+        </div>
+
+        <div>
+          <br />
+          <label for="url-portfolio">URL do portfólio ou LinkedIn:</label>
+          <input type="url" id="url-portfolio" name="portfolio" placeholder="https://" />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Avaliação da Disciplina</legend>
+
+        <div>
+          <label for="rng-nota">
+            Nota para a disciplina: <span id="valor-nota">5</span>/10
+          </label>
+          <br />
+          <input 
+            type="range" 
+            id="rng-nota" 
+            name="nota_disciplina" 
+            min="0" max="10" value="5" 
+            oninput="document.getElementById('valor-nota').textContent = this.value" 
+          />
+        </div>
+
+        <fieldset>
+          <legend>Satisfação com o material didático</legend>
+          <div>
+            <input type="radio" id="sat-muito" name="satisfacao" value="Muito satisfeito" />
+            <label for="sat-muito">Muito satisfeito</label>
+          </div>
+          <div>
+            <input type="radio" id="sat-sat" name="satisfacao" value="Satisfeito" />
+            <label for="sat-sat">Satisfeito</label>
+          </div>
+          <div>
+            <input type="radio" id="sat-neutro" name="satisfacao" value="Neutro" />
+            <label for="sat-neutro">Neutro</label>
+          </div>
+          <div>
+            <input type="radio" id="sat-insat" name="satisfacao" value="Insatisfeito" />
+            <label for="sat-insat">Insatisfeito</label>
+          </div>
+          <div>
+            <input type="radio" id="sat-m-insat" name="satisfacao" value="Muito insatisfeito" />
+            <label for="sat-m-insat">Muito insatisfeito</label>
+          </div>
+        </fieldset>
+
+        <div>
+          <br />
+          <label for="txt-sugestoes">Sugestões de melhoria:</label>
+          <br />
+          <textarea id="txt-sugestoes" name="sugestoes" maxlength="1000" rows="6" style="width: 100%; max-width: 500px;"></textarea>
+        </div>
+
+        <div>
+          <br />
+          <label for="data_preenchimento">Data de preenchimento: <span aria-hidden="true">*</span></label>
+          <input type="date" id="data_preenchimento" name="data_preenchimento" aria-describedby="instrucao-data" />
+          <br />
+          <small id="instrucao-data">A data não pode ser futura.</small>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Consentimento e Envio</legend>
+
+        <input type="hidden" name="pesquisa_id" value="PWEB1-2026-1" />
+
+        <div>
+          <input type="checkbox" id="chk-consentimento" name="consentimento" />
+          <label for="chk-consentimento">Autorizo o uso dos meus dados para fins acadêmicos. <span aria-hidden="true">*</span></label>
+        </div>
+      </fieldset>
+
+      <div>
+        <br />
+        <button type="submit">Enviar Pesquisa</button>
+      </div>
+
+    </form>
+  </main>
+
+  <script>
+    function validarEmail(campo) {
+      const erro = document.getElementById('erro-email');
+      if (!campo.value.endsWith('@ifal.edu.br')) {
+        erro.textContent = 'Informe seu e-mail institucional (@ifal.edu.br)';
+        campo.setAttribute('aria-invalid', 'true');
+      } else {
+        erro.textContent = '';
+        campo.setAttribute('aria-invalid', 'false');
+      }
+    }
+  </script>
+
+  <script>
+    document.getElementById('data_preenchimento').max =
+      new Date().toISOString().split('T')[0];
+  </script>
+
+</body>
+</html>
