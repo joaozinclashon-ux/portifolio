@@ -1,0 +1,84 @@
+/* ================= SELETORES DE ELEMENTOS ================= */
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4; /* Cor de fundo */
+    color: #333;               /* Cor do texto */
+    max-width: 500px;          /* Largura máxima do formulário */
+    margin: 20px auto;         /* Margem para centralizar na tela */
+    padding: 10px;             /* Espaçamento interno */
+}
+
+h1 {
+    text-align: center;
+    color: #006633;            /* Cor do título */
+}
+
+fieldset {
+    border: 1px solid #ccc;
+    border-radius: 8px;        /* Cantos arredondados */
+    padding: 15px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;        /* Margens para espaçar os campos */
+}
+
+
+/* ================= SELETORES POR CLASSE (Mínimo 5) ================= */
+
+/* Classe 1: Cabeçalho */
+.cabecalho-principal {
+    text-align: center;
+}
+
+/* Classe 2: Texto de apresentação */
+.texto-apresentacao {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Classe 3: O formulário (com a sombra solicitada) */
+.formulario-estilizado {
+    background-color: white;
+    padding: 15px;
+    box-shadow: 2px 2px 8px gray; /* Sombra obrigatória */
+    border-radius: 8px;
+}
+
+/* Classe 4: Estilização dos campos de digitação e seleção */
+.campo-texto, .campo-selecao {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #999;
+    border-radius: 4px;        /* Cantos arredondados nos inputs */
+    box-sizing: border-box;    /* Mantém o alinhamento correto */
+}
+
+/* Classe 5: Estilização do botão de envio */
+.botao-enviar {
+    width: 100%;
+    padding: 10px;
+    background-color: #006633;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;           /* Muda o cursor do mouse */
+    margin-top: 15px;
+}
+
+
+/* Class Extra: Rodapé */
+.rodape-pagina {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 13px;
+    color: #484242;
+}
+
+/* Estilo direto da imagem */
+.logo-ifal {
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+}
