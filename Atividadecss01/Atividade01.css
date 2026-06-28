@@ -1,0 +1,242 @@
+/* =====================================================================
+   atv01.css  —  ARQUIVO DE TRABALHO DA ATIVIDADE REFATORADO
+   ---------------------------------------------------------------------
+   [Reflexão Escrita - Bloco 1]
+   O 'rem' baseia-se no tamanho da fonte raiz (html), ideal para tipografia pois respeita o zoom do navegador.
+   O 'em' é relativo ao font-size do próprio elemento, ótimo para padding/margin escalarem com o texto.
+   A '%' e o 'vw' dependem da largura da tela/pai, ideais para layouts fluidos e responsivos.
+   ===================================================================== */
+
+/* ---------- Base ---------- */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  color: #333333;
+  background-color: #f5f5f5;
+}
+
+/* ---------- Cabeçalho ---------- */
+.cabecalho {
+  background-color: #1565c0;
+  padding: 2rem; /* 32px / 16 = 2rem */
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 2rem; /* 32px */
+  margin: 0;
+}
+
+.subtitulo {
+  color: #bbdefb;
+  font-size: 1rem; /* 16px */
+}
+
+/* ---------- Menu de navegação ---------- */
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+.menu li {
+  display: inline-block;
+  margin-right: 1.5rem;
+}
+
+/* [Bloco 2] Usando combinador descendente para garantir precisão */
+.menu a {
+  color: #ffffff;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+/* [Bloco 3 & 4] Hover e Pseudo-elemento ::before */
+.menu a:hover {
+  text-decoration: underline;
+  color: #bbdefb;
+}
+
+.menu a::before {
+  content: "› ";
+  margin-right: 0.25rem;
+}
+
+/* ---------- Seções ---------- */
+.secao {
+  padding: 2rem;
+  max-width: 60rem; /* Limita a largura máxima para manter a leitura confortável */
+  width: 100%;
+}
+
+h2 {
+  color: #1565c0;
+  font-size: 1.5rem; /* 24px */
+}
+
+/* [Bloco 2] Irmão adjacente (+): Aplica recuo superior apenas ao parágrafo logo após um h2 */
+h2 + p {
+  margin-top: 1.5rem;
+}
+
+h3 {
+  color: #0d47a1;
+  font-size: 1.25rem; /* 20px */
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.destaque {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #b71c1c;
+}
+
+/* [Bloco 2] Irmão geral (~): Seleciona parágrafos que sucedem o .destaque */
+.destaque ~ p {
+  color: #555555;
+  font-style: italic;
+}
+
+/* ---------- Grade de trilhas ---------- */
+.cartao {
+  display: inline-block;
+  width: 30%; /* Fluido em porcentagem */
+  min-width: 250px; /* Evita esmagar em telas muito pequenas */
+  vertical-align: top;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  padding: 1rem 1em; /* Rem nas verticais, Em proporcional nas horizontais */
+  margin: 0.5rem;
+}
+
+/* [Bloco 3] Alternância Zebra com :nth-child() 
+   [Reflexão Escrita]: O :nth-child() calcula a posição dinamicamente na árvore do HTML,
+   permitindo estilizar padrões (como linhas pares/ímpares) sem poluir o HTML com classes manuais. */
+.cartao:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.cartao:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* [Bloco 3] Exclusão com :not() para aplicar margem exceto no último cartão */
+.cartao:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+/* [Bloco 2 & 4] Agrupamento e conflito proposital de especificidade */
+/* Regra base do Botão (Classe: Especificidade 0-1-0) */
+.botao {
+  display: inline-block;
+  background-color: #1565c0;
+  color: #ffffff;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.5em 1em; /* Padding usando EM para escalar com o texto */
+  margin-top: 0.5rem;
+}
+
+/* Regra Conflitante (Seletor Composto: Especificidade 0-1-1)
+   [Reflexão Escrita]: Esta regra prevalecerá sobre '.botao' porque possui maior especificidade
+   (1 classe + 1 tag = 0-1-1) contra apenas (1 classe = 0-1-0) da regra anterior, vencendo a cascata sem !important. */
+.secao .botao {
+  background-color: #0d47a1; 
+}
+
+.botao:hover {
+  background-color: #1976d2;
+}
+
+/* ---------- Lista de programação ---------- */
+.lista-dias {
+  font-size: 1rem;
+  line-height: 1.75rem;
+}
+
+/* [Bloco 2] Filho direto (>): Estiliza apenas o primeiro nível, respeitando a diferença prática
+   de que o descendente (espaço) pegaria sublistas internas e o filho direto (>) afeta estritamente o nível abaixo. */
+.lista-dias > li {
+  font-weight: bold;
+  color: #1565c0;
+}
+
+/* [Bloco 3] Distinguindo primeiro e último item com pseudo-classes */
+.lista-dias > li:first-child {
+  border-top: 2px solid #1565c0;
+}
+
+.lista-dias > li:last-child {
+  border-bottom: 2px solid #1565c0;
+}
+
+/* ---------- Formulário ---------- */
+.formulario {
+  max-width: 30rem;
+  width: 100%;
+}
+
+label {
+  display: block;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+/* [Bloco 4] Pseudo-elemento ::after para asterisco de obrigatoriedade */
+label::after {
+  content: " *";
+  color: #b71c1c;
+}
+
+/* [Bloco 2] Agrupamento de Seletores unificando regras repetidas de input e textarea */
+input, textarea {
+  display: block;
+  width: 100%; /* Largura flexível ocupando o container do formulário */
+  max-width: 20rem; /* Limite de 320px convertido para rem */
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #999999;
+}
+
+/* [Bloco 3] Estado de Focus para retorno visual */
+input:focus, textarea:focus {
+  border-color: #1565c0;
+  outline: none;
+  box-shadow: 0 0 5px rgba(21, 101, 192, 0.5);
+}
+
+/* [Bloco 4] Seletores de Atributo específicos */
+input[type="email"] {
+  border-left: 4px solid #4caf50; /* Borda esquerda verde para sinalizar email */
+}
+
+input[type="password"] {
+  border-left: 4px solid #f44336; /* Borda esquerda vermelha para sinalizar senha */
+}
+
+button {
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #1565c0;
+  padding: 0.5em 1.5em;
+  margin-top: 1rem;
+  border: 0;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0d47a1;
+}
+
+/* ---------- Rodapé ---------- */
+.rodape {
+  background-color: #263238;
+  color: #cfd8dc;
+  padding: 1.5rem;
+  font-size: 0.875rem; /* 14px / 16 = 0.875rem */
+}
